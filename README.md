@@ -107,7 +107,7 @@ To run this project, you need a Revolut Merchant Sandbox account.
 1. Sign up at: https://sandbox-business.revolut.com
 2. Create a Sandbox merchant account
    Further information can be found at https://developer.revolut.com/docs/guides/accept-payments/get-started/apply-for-a-merchant-account
-3. Generate API keys:
+3. Generate API keys through the merchant interface:
    - Secret key
    - Public key
 

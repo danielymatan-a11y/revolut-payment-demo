@@ -104,7 +104,7 @@ Tools like ngrok or Cloudflare tunnels are only needed if you want to test webho
 
 To run this project, you need a Revolut Merchant Sandbox account.
 
-1. Sign up at: https://developer.revolut.com
+1. Sign up at: https://sandbox-business.revolut.com
 2. Create a Sandbox merchant account
 3. Generate API keys:
    - Secret key

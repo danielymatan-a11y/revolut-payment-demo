@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Revolut Pay Demo</title>
+
+  <script>
+    !function(e,o,t){const n={sandbox:{embed:"https://sandbox-merchant.revolut.com/embed.js",version:"https://sandbox-merchant.revolut.com/version.js",upsell:"https://sandbox-merchant.revolut.com/upsell/embed.js"},prod:{embed:"https://merchant.revolut.com/embed.js",version:"https://merchant.revolut.com/version.js",upsell:"https://merchant.revolut.com/upsell/embed.js"}};const r=(e,n)=>{const r=((e,t)=>{const n=o.createElement("script");n.id="revolut-checkout";n.src=t?`${e}?version=${encodeURIComponent(t)}`:e;n.async=!0;o.head.appendChild(n);return n})(e,n);return new Promise((resolve,reject)=>{r.onload=()=>resolve();r.onerror=()=>{o.head.removeChild(r);reject(new Error(t+" failed to load"))}})};let l={},s={},d={};const u=function(e,o){o=o||"prod";if(l[o])return Promise.resolve(l[o]);return r(n[o].version,`${Date.now()}`).then(()=>{const e="__REV_PAY_VERSION__" in window&&typeof __REV_PAY_VERSION__==="string"?__REV_PAY_VERSION__:"";delete window.__REV_PAY_VERSION__;l[o]=e;return e}).catch(()=>{l[o]="";return""})};function c(o,l){if(s[o])return Promise.resolve(l(s[o]));return u().then(e=>r(n[o].embed,e)).then(()=>{(()=>{if(window.RevolutCheckout===i||!window.RevolutCheckout)throw new Error(t+" failed to load")})();s[o]=window.RevolutCheckout;e[t]=i;return l(s[o])})}const i=function(e,o){return c(o||"prod",o=>o(e))};i.payments=function(e){const o=e.mode||"prod",t={locale:e.locale||"auto",publicToken:e.publicToken||null};return c(o,o=>o.payments(t))};i.embeddedCheckout=function(e){return c(e.mode||"prod",o=>o.embeddedCheckout(e))};i.upsell=function(e){const o=e.mode||"prod",l={locale:e.locale||"auto",publicToken:e.publicToken||null};if(d[o])return Promise.resolve(d[o](l));return u().then(e=>r(n[o].upsell,e)).then(()=>{if(!window.RevolutUpsell)throw new Error(t+" failed to load");d[o]=window.RevolutUpsell;delete window.RevolutUpsell;return d[o](l)})};e[t]=i}(window,document,"RevolutCheckout");
+  </script>
+</head>
+<body>
+  <h1>Revolut Pay Demo</h1>
+
+  <label for="amount">Amount (in GBP):</label>
+<input
+  id="amount"
+  type="text"
+  inputmode="decimal"
+  placeholder="Enter amount (e.g. 10.02)"
+/>
+
+<button id="load-widget-btn">
+  Start payment
+</button>
+
+<button id="pay-again-btn" style="display:none; margin-left: 10px;">
+</button>
+
+  <div id="order-summary" style="margin-top: 20px;"></div>
+  <div id="revolut-pay" style="margin-top: 20px;"></div>
+  
+
+  <p id="status"></p>
+
+  <script>
+    window.REVOLUT_PUBLIC_KEY = "{{ public_key }}";
+  </script>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

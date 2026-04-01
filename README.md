@@ -114,6 +114,7 @@ To run this project, you need a Revolut Merchant Sandbox account.
 4. Add them to your `.env` file:
 
 REVOLUT_SANDBOX_SECRET_KEY=your_secret_key
+
 REVOLUT_SANDBOX_PUBLIC_KEY=your_public_key
 
 ## Demo Payment Setup Instructions
